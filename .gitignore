@@ -105,3 +105,4 @@ dist
 
 # Intellij IDE file
 .idea
+.vscode

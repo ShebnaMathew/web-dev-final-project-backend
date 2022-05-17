@@ -40,4 +40,4 @@ likeController(app);
 postController(app);
 contentController(app);
 
-app.listen(4000);
+app.listen(process.env.PORT || 4000);

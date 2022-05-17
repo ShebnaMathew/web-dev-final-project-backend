@@ -8,10 +8,12 @@ import * as trackDao from "../database/track/track-dao.js";
 import * as showDao from "../database/show/show-dao.js";
 import * as episodeDao from "../database/episode/episode-dao.js";
 
+const CONTENT_SIZE = 50;
+
 const getAnonymousContent = async (req, res) => {
 
     const posts = []
-    await generateAnonymousContent(posts, 20);
+    await generateAnonymousContent(posts, CONTENT_SIZE);
 
     res.json({posts});
 
@@ -56,8 +58,8 @@ const getNonAnonymousContent = async (req, res) => {
         postPromises.push(promise);
     }
 
-    if (noDuplicates.length < 20) {
-        await generateAnonymousContent(posts, 20 - noDuplicates.length);
+    if (noDuplicates.length < CONTENT_SIZE) {
+        await generateAnonymousContent(posts, CONTENT_SIZE - noDuplicates.length);
     }
 
     await Promise.all(postPromises);
@@ -67,8 +69,8 @@ const getNonAnonymousContent = async (req, res) => {
             return posts.find(a => a.post_id === id)
         })
 
-    if (posts.length > 20) {
-        posts = posts.slice(0, 20);
+    if (posts.length > CONTENT_SIZE) {
+        posts = posts.slice(0, CONTENT_SIZE);
     }
 
     res.json({posts});

@@ -12,7 +12,7 @@ import contentController from "./controllers/content-controller.js";
 
 const database = process.env.DATABASE_URL || 'mongodb://127.0.0.1:27017/webdev';
 mongoose.connect(database);
-
+//check
 
 const app = express();
 app.use(cors({
